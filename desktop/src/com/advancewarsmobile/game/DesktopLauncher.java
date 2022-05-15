@@ -8,7 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setTitle("AdvanceWarsMobile");
+		config.setTitle("Micro Wars");
+		config.setWindowSizeLimits(480, 800, -1, -1);
 		new Lwjgl3Application(new AdvanceWarsMobile(), config);
 	}
 }
