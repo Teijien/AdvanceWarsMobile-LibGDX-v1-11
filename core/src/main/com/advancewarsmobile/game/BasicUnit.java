@@ -1,20 +1,12 @@
 package com.advancewarsmobile.game;
 
 public class BasicUnit implements Unit {
-    private int team;
-    private Stats stats;
+    private final int team;
+    private final Stats stats;
 
     public BasicUnit(int team, Stats stats) {
         this.team = team;
         this.stats = stats;
-    }
-
-    public int team() {
-        return team;
-    }
-
-    public Stats stats() {
-        return stats;
     }
 
     public void attackUnit(Unit defender) {
