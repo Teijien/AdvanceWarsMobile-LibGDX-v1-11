@@ -76,6 +76,21 @@ public class MapListener extends InputListener {
             if (map.getUnit(cell.x(), cell.y()).hp() <= 0) {
                 map.deleteUnit(cell.x(), cell.y());
                 view.deleteActor(cell.x(), cell.y());
+            } else {
+                ((UnitActor) view.getActor(cell.x(), cell.y())).getHealthView().changeFrame(
+                        map.getUnit(cell.x(), cell.y()).hp() / 10
+                );
+            }
+
+            if (map.getUnit(path.getLast().x(), path.getLast().y()).hp() <= 0) {
+                map.deleteUnit(path.getLast().x(), path.getLast().y());
+                view.deleteActor(path.getLast().x(), path.getLast().y());
+            } else {
+                ((UnitActor) view.getActor(path.getLast().x(), path.getLast().y()))
+                        .getHealthView()
+                        .changeFrame(
+                                map.getUnit(path.getLast().x(), path.getLast().y()).hp() / 10
+                        );
             }
         }
 

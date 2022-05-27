@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -53,7 +52,9 @@ public class AdvanceWarsMobile extends ApplicationAdapter {
 		// Designate basicUnit sprite textures
 		Texture redInfantry = new Texture(Gdx.files.internal("infantry.png"));
 		Texture blueInfantry = new Texture(Gdx.files.internal("infantryBlue.png"));
-		Texture health = new Texture(Gdx.files.internal("10.png"));
+
+		// Create hp sprite sheet
+		Texture health = new Texture(Gdx.files.internal("health.png"));
 
 		// Initialize default stats
 		BasicStats infantryStats = new BasicStats(100, 50, 10, 3, 1, 1.5);
@@ -65,8 +66,14 @@ public class AdvanceWarsMobile extends ApplicationAdapter {
 				(TiledMapTileLayer) map.getLayers().get(0),
 				view
 		);
-		Actor redActor = new UnitActor(new Sprite(redInfantry), new Sprite(health));
-		Actor blueActor = new UnitActor(new Sprite(blueInfantry), new Sprite(health));
+		Actor redActor = new UnitActor(
+				new Sprite(redInfantry),
+				new HealthView(health, 5, 2)
+		);
+		Actor blueActor = new UnitActor(
+				new Sprite(blueInfantry),
+				new HealthView(health, 5, 2)
+		);
 		redActor.addListener(moveListener);
 		blueActor.addListener(moveListener);
 		redActor.setPosition(48, 0);

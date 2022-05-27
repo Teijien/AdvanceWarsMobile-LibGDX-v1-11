@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 
 public class UnitActor extends Actor implements IUnitActor {
     private final Sprite sprite;
-    private final Sprite health;
+    private final HealthView health;
 
-    public UnitActor(Sprite sprite, Sprite health) {
+    public UnitActor(Sprite sprite, HealthView health) {
         this.sprite = sprite;
         this.health = health;
         setBounds(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
@@ -18,7 +18,7 @@ public class UnitActor extends Actor implements IUnitActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         sprite.draw(batch);
-        health.draw(batch);
+        health.sprite().draw(batch);
     }
 
     @Override
@@ -30,13 +30,17 @@ public class UnitActor extends Actor implements IUnitActor {
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
         sprite.setPosition(x, y);
-        health.setPosition(x + 8, y);
+        health.sprite().setPosition(x + 8, y);
     }
 
     @Override
     public void moveBy(float x, float y) {
         super.moveBy(x, y);
         sprite.setPosition(this.getX(), this.getY());
-        health.setPosition(this.getX() + 8, this.getY());
+        health.sprite().setPosition(this.getX() + 8, this.getY());
+    }
+
+    public HealthView getHealthView() {
+        return health;
     }
 }
