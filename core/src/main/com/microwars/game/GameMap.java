@@ -16,6 +16,10 @@ public class GameMap implements Map {
 
     public boolean unitHere(int col, int row) { return map[col][row] != null; }
 
+    public Unit[][] getMap() {
+        return map;
+    }
+
     public Unit getUnit(int col, int row) { return map[col][row]; }
 
     public void setUnit(Unit unit, int col, int row) {

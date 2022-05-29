@@ -42,9 +42,9 @@ public class MapListener extends InputListener {
                 .moveBy(x - (event.getTarget().getWidth() / 2),
                         y - (event.getTarget().getHeight() / 2));
 
-        if (map.unitHere(cell.x(), cell.y())) { return; }
+        if (validateCell(cell, tiles)) { return; }
 
-        if (!validateCell(cell, tiles)) { return; }
+        if (map.unitHere(cell.x(), cell.y())) { return; }
 
         if (path.removeCellsAfter(cell)) { return; }
 
@@ -63,6 +63,16 @@ public class MapListener extends InputListener {
     @Override
     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
         Cell cell = new Cell(event, tiles);
+
+        if (validateCell(cell, tiles)) {
+            event.getTarget()
+                    .setPosition(
+                            path.getFirst().x() * tiles.getTileWidth(),
+                            tiles.getHeight() * tiles.getTileHeight()
+                                    - (path.getFirst().y() + 1) * tiles.getTileHeight()
+                    );
+            return;
+        }
 
         if (!path.getFirst().equals(path.getLast())) {
             map.moveUnit(path.getFirst(), path.getLast());
@@ -104,11 +114,11 @@ public class MapListener extends InputListener {
 
 
     private boolean validateCell(Cell cell, TiledMapTileLayer tiles) {
-        if (!cell.inBounds(tiles)) { return false; }
-        if (cell.equals(path.getLast())) { return false; }
+        if (!cell.inBounds(tiles)) { return true; }
+        if (cell.equals(path.getLast())) {
+            System.out.println("Moved to new tile!");
+        }
 
-        System.out.println("Moved to new tile!");
-
-        return true;
+        return false;
     }
 }
