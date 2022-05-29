@@ -31,6 +31,11 @@ public class HealthView {
 
     // int num = Number to show
     public void changeFrame(int num) {
+        num = num / 10;
+        if (num < 1) {
+            num = 1;
+        }
+
         Sprite tmp = new Sprite(healthFrames[10 - num]);
         tmp.setPosition(health.getX(), health.getY());
         health = tmp;

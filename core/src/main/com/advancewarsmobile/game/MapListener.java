@@ -78,7 +78,7 @@ public class MapListener extends InputListener {
                 view.deleteActor(cell.x(), cell.y());
             } else {
                 ((UnitActor) view.getActor(cell.x(), cell.y())).getHealthView().changeFrame(
-                        map.getUnit(cell.x(), cell.y()).hp() / 10
+                        map.getUnit(cell.x(), cell.y()).hp()
                 );
             }
 
@@ -89,7 +89,7 @@ public class MapListener extends InputListener {
                 ((UnitActor) view.getActor(path.getLast().x(), path.getLast().y()))
                         .getHealthView()
                         .changeFrame(
-                                map.getUnit(path.getLast().x(), path.getLast().y()).hp() / 10
+                                map.getUnit(path.getLast().x(), path.getLast().y()).hp()
                         );
             }
         }
