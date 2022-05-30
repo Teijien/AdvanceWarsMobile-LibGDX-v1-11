@@ -24,3 +24,6 @@ Use careful strategy to defeat the other players units!
 - This game is intended for 2 players, so no CPU player has been implemented currently.
 - Turns do not exist, so players may take multiple turns in a row if they choose. This is currently left up to the discretion of the players.
 - Buildings are for asthetic purposes as well as aiding in determing tile size. They do not have any impact on actual gameplay.
+
+## How to Install
+From releases, download desktop-1.0.jar. To run the file, you will need Java 17 or higher.
