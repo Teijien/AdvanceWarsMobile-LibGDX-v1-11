@@ -10,4 +10,6 @@ public interface Unit {
     int mov();
 
     int hp();
+
+    int team();
 }

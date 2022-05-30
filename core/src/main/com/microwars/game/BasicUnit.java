@@ -17,11 +17,14 @@ public class BasicUnit implements Unit {
     }
 
     public void takeDmg(int atk) {
-        int dmg = hp() - (atk - stats.getDef());
-        if (stats.getDef() <= atk) {
-            stats.setHp(dmg);
+        int dmg = atk - stats.getDef();
+        if (dmg < 10) {
+            dmg = 10;
         }
-        System.out.println(team + " unit took " + (atk - stats.getDef()) + " damage! HP = " + hp());
+        if (stats.getDef() <= atk) {
+            stats.setHp(hp() - dmg);
+        }
+        System.out.println(team + " unit took " + (dmg) + " damage! HP = " + hp());
     }
 
     public Stats getStats() {
@@ -34,5 +37,9 @@ public class BasicUnit implements Unit {
 
     public int hp() {
         return getStats().getHp();
+    }
+
+    public int team() {
+        return team;
     }
 }
