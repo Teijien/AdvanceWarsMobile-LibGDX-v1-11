@@ -40,6 +40,7 @@ public class UnitActor extends Actor implements IUnitActor {
         health.sprite().setPosition(this.getX() + 8, this.getY());
     }
 
+    @Override
     public HealthView getHealthView() {
         return health;
     }

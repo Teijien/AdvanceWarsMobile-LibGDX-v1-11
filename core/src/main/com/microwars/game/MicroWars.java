@@ -52,9 +52,13 @@ public class MicroWars extends ApplicationAdapter {
 		// Designate basicUnit sprite textures
 		Texture redInfantry = new Texture(Gdx.files.internal("infantry.png"));
 		Texture blueInfantry = new Texture(Gdx.files.internal("infantryBlue.png"));
+		Texture[] infantryTextures = new Texture[2];
+		infantryTextures[0] = blueInfantry;
+		infantryTextures[1] = redInfantry;
 
 		// Create hp sprite sheet
 		Texture health = new Texture(Gdx.files.internal("health.png"));
+		HealthView healthView = new HealthView(health, 5, 2);
 
 		// Initialize default stats
 		BasicStats infantryStats = new BasicStats(100, 50, 10, 3, 1, 1.5);
@@ -66,13 +70,20 @@ public class MicroWars extends ApplicationAdapter {
 				(TiledMapTileLayer) map.getLayers().get(0),
 				view
 		);
+
+		InfantryFactory factory = new InfantryFactory(infantryTextures, gameMap, infantryStats,
+				view, moveListener, healthView);
+
+		factory.makeUnit(0, 0, 0);
+
+		// Create actors
 		Actor redActor = new UnitActor(
 				new Sprite(redInfantry),
-				new HealthView(health, 5, 2)
+				new HealthView(healthView)
 		);
 		Actor blueActor = new UnitActor(
 				new Sprite(blueInfantry),
-				new HealthView(health, 5, 2)
+				new HealthView(healthView)
 		);
 		redActor.addListener(moveListener);
 		blueActor.addListener(moveListener);

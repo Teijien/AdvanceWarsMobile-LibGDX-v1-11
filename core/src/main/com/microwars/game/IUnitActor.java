@@ -8,4 +8,6 @@ public interface IUnitActor {
     void setPosition(float x, float y);
 
     void moveBy(float x, float y);
+
+    HealthView getHealthView();
 }
