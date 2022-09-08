@@ -27,3 +27,4 @@ Use careful strategy to defeat the other players units!
 
 ## How to Install
 From releases, download desktop-1.0.jar. To run the file, you will need Java 17 or higher.
+NOTE: CURRENT RELEASE IS TEMPORARILY UNAVAILABLE
